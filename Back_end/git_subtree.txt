@@ -1,2 +1,21 @@
 Git subtree
-\change chagnae
+개념: 하나의 repository(프로젝트)안에 여러개의 sub-repository(별개의 파트)를 연동하여 관리.
+이를위해 main project repository(parents)와 sub project repository(child)가 개별적으로 다 필요함.
+
+
+연동 절차
+1. local에 parents 복사. repository를 복사할 폴더에서 다음 명령어 수행
+- git clone (parents URL)
+2. parents 폴더로 이동.
+3. 해당 폴더에서 child repository remote 연동
+- git remote add (remote name) (child URL)
+- git remote -v 명령어로 연동이 잘 되었는지 확인.
+4. parents 폴더에서 subtree 등록(로컬작업)
+- git subtree add --prefix=(subree name) (생성한 remote name) (parent github branch name)
+5. 깃허브로 push
+- git push
+
+
+관리 절차: 2가지로 나누어짐
+1. parenst: git add, git commit git push, git pull 똑같이 관리가 됨. 다만 parents 시점에선 child는 하위 folder 개념이므로, child도 같이 동기화가 됨.
+2. child: git add, git commit, git subtree push --prefix=(subree name) (생성한 remote name) (child github branch name). 이 경우 child의 리포지터리만 동기화가 됨.

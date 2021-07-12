@@ -8,29 +8,21 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
-
 import com.human.dto.MemberVO;
+import com.common.util.DBConnection;
 
 public class MemberDAO {
-	private MemberDAO() {
-	}
+	
+	private Connection conn;
+	private PreparedStatement pstmt;
+	private ResultSet rs;
+	
+	private MemberDAO() {}
 
 	private static MemberDAO instance = new MemberDAO();
 
 	public static MemberDAO getInstance() {
 		return instance;
-	}
-
-	public Connection getConnection() throws Exception {
-		Connection conn = null;
-		Context initContext = new InitialContext();
-		Context envContent = (Context) initContext.lookup("java:/comp/env");
-		DataSource ds = (DataSource) envContent.lookup("jdbc/Top");
-		conn = ds.getConnection();
-		return conn;
 	}
 
 	/*
@@ -40,16 +32,14 @@ public class MemberDAO {
 	 * 
 	 */
 	public int userCheck(String email, String pwd) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+	
 		int result = -1;
 
 		// membership 테이블에서 사용자 아이디가 userid인 레코드의 pwd column을 조회
 		String sql = "select email, pwd from member_info where email=?";
 
 		try {
-			conn = getConnection(); // DB 연결 시도
+			conn = DBConnection.getConnection(); // DB 연결 시도
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, email);
 
@@ -101,14 +91,11 @@ public class MemberDAO {
 	 */
 	public MemberVO getUser(String email) {
 		MemberVO mVO = null; // 데이터가 없을 경우 null 값을 반환.
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 
 		String sql = "select * from member_info where email=?";
 
 		try {
-			conn = getConnection(); // DB 연결 시도
+			conn = DBConnection.getConnection(); // DB 연결 시도
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, email);
 
@@ -147,15 +134,12 @@ public class MemberDAO {
 	
 	// 지정한 아이디가 있으면 1, 없으면 -1을 반환한다.
 		public int confirmID(String email) {
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
 			int result = -1;
 
 			String sql = "select pwd from member_info where email=?";
 
 			try {
-				conn = getConnection(); // DB 연결 시도
+				conn = DBConnection.getConnection(); // DB 연결 시도
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, email);
 
@@ -189,16 +173,13 @@ public class MemberDAO {
 		}
 	    
 	    public int insertMember(MemberVO mVo) {
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
 
 			int result = 0;
 
 			String sql = "insert into member_info(email, pwd, nickname, sex) values(?, ?, ?, ?)";
 
 			try {
-				conn = getConnection();
+				conn = DBConnection.getConnection();
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, mVo.getEmail());
 				pstmt.setString(2, mVo.getPwd());
@@ -228,14 +209,12 @@ public class MemberDAO {
 	    
 	    
 	    public int updateMember(MemberVO mVo) {
-			Connection conn = null;
-			PreparedStatement pstmt = null;
 			int result = -1;
 
 			String sql = "update member_info set pwd = ?, nickname = ?, sex = ?, greeting = ? where email = ?";
 
 			try {
-				conn = getConnection();
+				conn = DBConnection.getConnection();
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, mVo.getPwd());
 				pstmt.setString(2, mVo.getNickname());

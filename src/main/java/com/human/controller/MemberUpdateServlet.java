@@ -42,26 +42,28 @@ public class MemberUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		MemberVO mVo = new MemberVO();
+		request.setCharacterEncoding("UTF-8");			//한글 깨짐 방지
 		
+		// 폼에서 입력한 회원 정보 얻어오기
 		String email = request.getParameter("email");
 		String pwd = request.getParameter("pwd");
 		String nickname = request.getParameter("nickname");
-		String greeting = request.getParameter("greeting");
 		int sex = Integer.parseInt(request.getParameter("sex"));
-
-		MemberDAO mDao = MemberDAO.getInstance();
-
+		String greeting = request.getParameter("greeting");
+		//propic variable
+		
+		// 회원 정보를 저장할 객체 생성
+		MemberVO mVo = new MemberVO();
 		mVo.setEmail(email);
 		mVo.setPwd(pwd);
 		mVo.setNickname(nickname);
-		mVo.setGreeting(greeting);
 		mVo.setSex(sex);
-
-		mDao.updateMember(mVo);
+		mVo.setGreeting(greeting);
 		
-		response.sendRedirect("login.do");
+		MemberDAO mDao = MemberDAO.getInstance();
+		
+		mDao.updateMember(mVo);
+		response.sendRedirect("main.jsp");
 	}
 
 }

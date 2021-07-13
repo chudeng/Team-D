@@ -1,0 +1,179 @@
+@charset "UTF-8";
+
+
+body{ /*background colour*/
+	background-color: #DDC5AD;
+	display: flex;
+}
+#line {/*top line in BG*/
+	border: 1px solid #6182A0;
+	margin-top: 35px;
+}
+#line2 {/*bottom line in BG*/
+	border: 1px solid #6182A0;
+	margin-top: 0px;
+}
+
+
+/* outline of main body/box; where all content is */
+#background{
+	background-color: #F0E5DC;
+	width: 1280px;
+	height: 720px;
+	border: 1px solid #6182A0;
+	border-radius: 15px;
+	box-shadow: 5px 5px #595959;
+}
+
+/*top section of page; 페이지 현재 위치, 검색창*/
+#header{
+	display: flex;
+	justify-content: space-evenly;
+	width: 1280px;
+	height: 45px;
+}
+#arrow {            
+   width: 150px;
+   height: 40px;
+   background: violet;
+}
+#location_box {
+	width: 800px;
+	height: 38px;
+    background-color: white;
+    border: solid 1px #6182A0;
+    border-radius: 8px;
+}
+#tag_search{/*검색 창*/
+	float: right;
+	margin-left: 10px;
+}
+/* end section for header */
+
+
+/* start section for main_body */
+#main_body{/*left_column, middle_column, right_column*/
+	display: flex;
+}
+
+a{/*for all links*/
+  text-decoration: none;
+  color: black;
+}
+
+/* start section for left_column */
+#left_column{ 
+  	width: 280px;
+	height: 600px;
+}
+
+/* start section for profile_area */
+#profile_area{
+	width: 260px;
+	height: 555px;
+	margin-top: 40px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+#profile_photo{/*border for photo*/
+  width: 200px;
+  height: 230px; 
+  background-color: #DDC5AD;
+  border: 1px solid #6182A0;
+  border-radius: 8px;
+  margin-top: 30px;
+  margin-left: 20px;
+}
+#current_propic {/*current profile picture*/
+  width: 180px;
+  height: 180px;
+  margin-top: 25px;
+  margin-left:10px;
+}
+#profile_name{
+	display:flex;
+	width: 200px;
+	height: 60px;
+	margin-left: 20px;
+	margin-top: 5px;
+}
+#nickname{
+	width:150px;
+}
+#infbtn{
+	width: 52px;
+	height: 20px;
+	background-color: #DDC3AD;
+	border-width: 1px;
+}
+#profile_info{
+	margin-left: 20px;
+}
+#info_greeting{
+	width: 200px;
+	height: 100px;
+	background-color: white;
+	border: solid 1px #6182A0;
+	border-radius: 15px;
+	padding-left: 10px;
+	padding-top: 10px;
+}
+#info_other{
+	margin-top: 40px;
+}
+/* end section for profile_area */
+/* end section for left_column */
+
+
+/* start section for middle_column */
+#middle_column{/*content field*/
+  	width: 790px;
+	height: 600px;
+	
+}
+
+#write_button{
+	margin-left: 710px;
+	margin-top: 5px;
+	background-color: #DDC3AD;
+	border-width: 1px;
+}
+#middle_column_content {
+	background-color: white;
+	display:flex;
+	width: 790px;
+	height:550px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	flex-wrap: wrap;
+}
+
+  /* navigation bar */
+  .navigation_bar_preview{
+    list-style-type: none; /*removes bullet marks in list*/
+    margin: auto;  /*align center*/
+    width: 300px;
+    background-color: rgb(240,229,220);
+    height: 80%; /*full height is 100%*/
+    position: relative; /*make it stick, even on scroll*/
+    overflow-y: auto; /*hidden, visible, scroll, auto*/
+    overflow-x: auto;
+  }
+
+form{
+	padding-left: 20px;
+	padding-top: 10px;
+}
+/* end section for middle_column */
+
+
+
+/* end section for right_column */
+#right_column{
+  	width: 180px;
+  	height: 600px;
+  	
+	text-align: right;
+	padding-left: 5px;
+}
+/* end section for right_column */

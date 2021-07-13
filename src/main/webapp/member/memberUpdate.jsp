@@ -83,7 +83,7 @@
 							</tr>
 							<tr height="30">
 								<td width="80">비밀번호 확인: </td>
-								<td><input type="password" name="pwd_check" size="27"></td>
+								<td><input type="password" name="pwdpwd" size="27"></td>
 							</tr>
 							<tr>
 								<td><label for="birthday">생년월일: </label></td>

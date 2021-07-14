@@ -20,7 +20,7 @@ body{ /*background colour*/
 	background-color: #F0E5DC;
 	width: 1280px;
 	height: 720px;
-	border: 1px solid #6182A0;
+	border: 2px solid #6182A0;
 	border-radius: 15px;
 	box-shadow: 5px 5px #595959;
 }
